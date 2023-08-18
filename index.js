@@ -81,6 +81,10 @@ app.delete("/user-profile", auth, async (req, res) => {
   }
 });
 
+app.get("/", (req, res) => {
+  res.send("hello");
+});
+
 app.listen(process.env.PORT || 3001, () => {
   console.log("server running on port 3001");
 });
