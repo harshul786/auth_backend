@@ -8,4 +8,4 @@
   to = "/.netlify/functions/api/:splat"
   
 [dev]
-  command = "yarn start"
+  publish = "dist"

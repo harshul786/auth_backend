@@ -1,15 +1,14 @@
-const express = require("express");
-const app = express();
+import express, { Router } from "express";
+const app = Router();
 const auth = require("./middleware/auth");
 require("dotenv");
 
-app.use(express.json());
 require("./mongoose/index").connect();
 const User = require("./models/users");
 
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
+app.get("/test", (req, res) => {
   res.send("hello");
 });
 
@@ -81,10 +80,8 @@ app.delete("/user-profile", auth, async (req, res) => {
   }
 });
 
-app.get("/", (req, res) => {
-  res.send("hello");
-});
+// app.listen(process.env.PORT || 3001, () => {
+//   console.log("server running on port 3001");
+// });
 
-app.listen(process.env.PORT || 3001, () => {
-  console.log("server running on port 3001");
-});
+module.exports = app;

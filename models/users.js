@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
@@ -51,6 +51,7 @@ userSchema.methods.getPublicObject = function () {
 
 userSchema.methods.generateAuthToken = async function () {
   const user = this;
+  console.log(user);
 
   const token = jwt.sign({ _id: user._id.toString() }, jwt_secret, {
     expiresIn: "7 days",
@@ -69,7 +70,6 @@ userSchema.statics.authenticateByCredentials = async (email, password) => {
   }
 
   const isMatch = await bcrypt.compare(password, user.password);
-
   if (!isMatch) {
     throw new Error("Invalid Email or Password!");
   }

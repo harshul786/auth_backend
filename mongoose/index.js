@@ -2,11 +2,12 @@ require("dotenv").config();
 
 const uri = process.env.MONGODB;
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
 
 exports.connect = () => {
   mongoose
-    .connect(uri)
+    .connect(
+      "mongodb+srv://harshul:Mongodb12345@cluster0.n6vhnhg.mongodb.net/auth"
+    )
     .then(() => {
       console.log("Successfully connected to database");
     })
